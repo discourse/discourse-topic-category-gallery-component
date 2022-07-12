@@ -1,0 +1,10 @@
+
+{{#if this.showFor }}
+ {{#conditional-loading-spinner condition=this.isLoading}}
+    <div class="topic-category-gallery-content {{if this.galleryOnly 'topic-category-gallery_only'}}">
+      {{html-safe this.topicContent}}
+    </div>
+  {{/conditional-loading-spinner}}
+{{/if}}
+
+

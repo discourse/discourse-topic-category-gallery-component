@@ -1,0 +1,45 @@
+.topic-category-gallery-connector  {
+  .topic-category-gallery_only { 
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+
+    height: 100px;
+    overflow: hidden;
+
+    // hide non-lightbox elements
+    *:not(.lightbox-wrapper) {
+      display: none;
+    }
+
+    // show lightbox elements
+    .lightbox-wrapper * {
+      display: block;
+    }
+
+    .mobile-view & { // only show a little on mobile
+      .lightbox-wrapper:nth-of-type(n+5) {
+        display: none;
+      }
+    }
+
+    .meta {
+      display: none;
+    }
+
+    // fit image to container
+    .lightbox-wrapper {
+      height: 100px;
+      > a {
+        width: 100%;
+        height: 100%;
+        img {
+          object-fit: cover;
+          width: 100%;
+          background: var(--primary-200);
+
+        }
+      }
+    }
+  }
+  
+}
