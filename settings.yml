@@ -1,7 +1,4 @@
 category_galleries:
   default: >-
     [{}]
-  json_schema: '{"type":"array","format":"list","uniqueItems":true,"items":{"type":"object","properties":{"category":{"type":"string","description":"category ID"},"topic":{"type":"string"},"galleryOnly":{"type":"boolean", "default":"true"}},"additionalProperties":false}}'
-
-only_show_images:
- default: true
+  json_schema: '{"type":"array","format":"list","uniqueItems":true,"items":{"type":"object","properties":{"category":{"type":"string","description":"category ID"},"topic":{"type":"string"}},"additionalProperties":false}}'
