@@ -5,16 +5,15 @@ import { inject as service } from "@ember/service";
 import { Promise } from "rsvp";
 import { tracked } from "@glimmer/tracking";
 import { scrollTop } from "discourse/mixins/scroll-top";
+import { action } from "@ember/object";
+import DiscourseURL from "discourse/lib/url";
 
 const categoryTopicConfig = JSON.parse(settings.category_galleries);
 
 export default class TopicCategoryGallery extends GlimmerComponent {
   @service router;
-  @tracked galleryOnly;
-  @tracked topicContent;
   @tracked isLoading;
   @tracked showFor = false;
-  
 
   @bind
   currentCategory() {
@@ -30,22 +29,25 @@ export default class TopicCategoryGallery extends GlimmerComponent {
     }
   }
 
-
-
   _getTopicContent() {
     if (this.currentCategory() && this.configuredCategory()) {
       this.isLoading = true;
       this.showFor = true;
-      let id = parseInt(this.configuredCategory().topic, 10);
-
       this.galleryOnly = this.configuredCategory().galleryOnly;
 
+      let id = parseInt(this.configuredCategory().topic, 10);
 
       let topicContent = ajax(`/t/${id}.json`).then((result) => {
+        this.topicId = result.id;
         return result.post_stream.posts[0].cooked;
       });
       Promise.all([topicContent]).then((result) => {
-        this.topicContent = result[0];
+        let htmlWrapper = document.createElement('div');
+        htmlWrapper.innerHTML = result[0];
+
+        let imageList = htmlWrapper.querySelectorAll('img');
+
+        this.topicContent = imageList;
         this.isLoading = false;
         scrollTop();
       });
@@ -64,4 +66,9 @@ export default class TopicCategoryGallery extends GlimmerComponent {
     this.appEvents.off("page:changed", this, this._getTopicContent);
   }
 
+  @action
+  visitTopic(e) {
+    e.preventDefault();
+    DiscourseURL.routeTo(`/t/${this.topicId}`);
+  }
 }

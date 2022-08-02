@@ -1,8 +1,12 @@
 
 {{#if this.showFor }}
  {{#conditional-loading-spinner condition=this.isLoading}}
-    <div class="topic-category-gallery-content {{if this.galleryOnly 'topic-category-gallery_only'}}">
-      {{html-safe this.topicContent}}
+    <div onclick={{action "visitTopic"}} class="topic-category-gallery-content {{if this.galleryOnly 'topic-category-gallery_only'}}">
+      {{#each this.topicContent as |image|}}
+        <div class="custom-gallery-image">
+          {{image}}
+        </div>
+      {{/each}}
     </div>
   {{/conditional-loading-spinner}}
 {{/if}}

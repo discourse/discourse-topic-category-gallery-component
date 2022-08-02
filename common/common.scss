@@ -1,45 +1,64 @@
 .topic-category-gallery-connector  {
-  .topic-category-gallery_only { 
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
-
+  height: calc(600px + 2em);
+  @media screen and (max-width: 768px) {
+    height: calc(200px + 2em);
+  }
+  .mobile-view & { // only show a little on mobile
     height: 100px;
+    margin-bottom: 0.5em;
+  }
+  .topic-category-gallery-content { 
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18%, 1fr));
+    height: calc(600px + 2em);
+    margin-bottom: 1em;
+    gap: 1em;
     overflow: hidden;
-
-    // hide non-lightbox elements
-    *:not(.lightbox-wrapper) {
-      display: none;
-    }
-
-    // show lightbox elements
-    .lightbox-wrapper * {
-      display: block;
+    @media screen and (max-width: 768px) {
+      height: calc(200px + 2em);
     }
 
     .mobile-view & { // only show a little on mobile
-      .lightbox-wrapper:nth-of-type(n+5) {
+      height: 100px;
+      margin-top: 0.5em;
+      gap: 0;
+      .custom-gallery-image:nth-of-type(n+5) {
         display: none;
       }
     }
 
-    .meta {
-      display: none;
-    }
-
     // fit image to container
-    .lightbox-wrapper {
-      height: 100px;
-      > a {
-        width: 100%;
-        height: 100%;
-        img {
-          object-fit: cover;
-          width: 100%;
-          background: var(--primary-200);
-
-        }
+    .custom-gallery-image {
+      height: 200px;
+     
+      @media screen and (max-width: 768px) {
+        height: 100px;
       }
+   
+        img {
+          background: var(--primary-200);
+          object-fit: cover;
+          object-position: top;
+          width: 100%;
+          height: 100%;
+        }
+      
+    }
+  }
+
+
+  + .container {
+    margin-bottom: 0;
+    .category-navigation,
+    .navigation-container {
+      margin-bottom: 0;
     }
   }
   
+}
+
+.list-controls {
+  display: flex;
+  flex-direction: column-reverse;
 }
