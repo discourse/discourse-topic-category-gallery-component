@@ -1,6 +1,6 @@
 import { ajax } from 'discourse/lib/ajax'
 import { bind } from 'discourse-common/utils/decorators'
-import GlimmerComponent from 'discourse/components/glimmer'
+import Component from '@glimmer/component'
 import { inject as service } from '@ember/service'
 import { Promise } from 'rsvp'
 import { tracked } from '@glimmer/tracking'
@@ -10,8 +10,9 @@ import DiscourseURL from 'discourse/lib/url'
 
 const categoryTopicConfig = JSON.parse(settings.category_galleries)
 
-export default class TopicCategoryGallery extends GlimmerComponent {
+export default class TopicCategoryGallery extends Component {
   @service router
+  @service appEvents
   @tracked isLoading
   @tracked showFor = false
 
