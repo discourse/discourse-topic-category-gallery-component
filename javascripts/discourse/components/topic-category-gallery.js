@@ -20,6 +20,12 @@ export default class TopicCategoryGallery extends Component {
     super(...arguments);
     this.appEvents.on("page:changed", this, this._getTopicContent);
   }
+
+  willDestroy() {
+    super.willDestroy(...arguments);
+    this.appEvents.off("page:changed", this, this._getTopicContent);
+  }
+
   @bind
   currentCategory() {
     return this.router.currentRoute?.attributes?.category?.id;
@@ -60,11 +66,6 @@ export default class TopicCategoryGallery extends Component {
       this.isLoading = false;
       this.showFor = false;
     }
-  }
-
-  willDestroy() {
-    super.willDestroy(...arguments);
-    this.appEvents.off("page:changed", this, this._getTopicContent);
   }
 
   @action
