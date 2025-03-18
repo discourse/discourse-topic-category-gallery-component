@@ -13,6 +13,7 @@ const categoryTopicConfig = JSON.parse(settings.category_galleries);
 export default class TopicCategoryGallery extends Component {
   @service router;
   @service appEvents;
+
   @tracked isLoading;
   @tracked showFor = false;
 
