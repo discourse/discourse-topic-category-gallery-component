@@ -6,7 +6,7 @@ import { Promise } from "rsvp";
 import { ajax } from "discourse/lib/ajax";
 import { bind } from "discourse/lib/decorators";
 import DiscourseURL from "discourse/lib/url";
-import { scrollTop } from "discourse/mixins/scroll-top";
+import { scrollTop } from "discourse/lib/scroll-top";
 
 const categoryTopicConfig = JSON.parse(settings.category_galleries);
 
