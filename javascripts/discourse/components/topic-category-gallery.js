@@ -5,8 +5,8 @@ import { service } from "@ember/service";
 import { Promise } from "rsvp";
 import { ajax } from "discourse/lib/ajax";
 import { bind } from "discourse/lib/decorators";
-import DiscourseURL from "discourse/lib/url";
 import { scrollTop } from "discourse/lib/scroll-top";
+import DiscourseURL from "discourse/lib/url";
 
 const categoryTopicConfig = JSON.parse(settings.category_galleries);
 
