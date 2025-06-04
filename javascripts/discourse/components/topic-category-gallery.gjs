@@ -3,6 +3,7 @@ import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
 import { Promise } from "rsvp";
+import ConditionalLoadingSpinner from "discourse/components/conditional-loading-spinner";
 import { ajax } from "discourse/lib/ajax";
 import { bind } from "discourse/lib/decorators";
 import { scrollTop } from "discourse/lib/scroll-top";
@@ -74,4 +75,24 @@ export default class TopicCategoryGallery extends Component {
     e.preventDefault();
     DiscourseURL.routeTo(`/t/${this.topicId}`);
   }
+
+  <template>
+    {{#if this.showFor}}
+      <ConditionalLoadingSpinner @condition={{this.isLoading}}>
+        {{! template-lint-disable no-invalid-interactive}}
+        <div
+          onclick={{action "visitTopic"}}
+          class="topic-category-gallery-content
+            {{if this.galleryOnly 'topic-category-gallery_only'}}"
+        >
+          {{#each this.topicContent as |image|}}
+            <div class="custom-gallery-image">
+              {{image}}
+            </div>
+          {{/each}}
+        </div>
+        {{! template-lint-enable no-invalid-interactive}}
+      </ConditionalLoadingSpinner>
+    {{/if}}
+  </template>
 }
