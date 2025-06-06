@@ -1,5 +1,5 @@
 .topic-category-gallery-connector {
-  @media screen and (max-width: 768px) {
+  @media screen and (width <= 768px) {
     height: calc(200px + 2em);
   }
 
@@ -18,7 +18,7 @@
     gap: 1em;
     overflow: hidden;
 
-    @media screen and (max-width: 768px) {
+    @media screen and (width <= 768px) {
       height: calc(200px + 2em);
     }
 
@@ -37,7 +37,7 @@
     .custom-gallery-image {
       height: 200px;
 
-      @media screen and (max-width: 768px) {
+      @media screen and (width <= 768px) {
         height: 100px;
       }
 
