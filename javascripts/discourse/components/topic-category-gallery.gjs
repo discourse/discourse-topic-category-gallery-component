@@ -1,5 +1,6 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
+import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
 import { Promise } from "rsvp";
@@ -81,7 +82,7 @@ export default class TopicCategoryGallery extends Component {
       <ConditionalLoadingSpinner @condition={{this.isLoading}}>
         {{! template-lint-disable no-invalid-interactive}}
         <div
-          onclick={{action "visitTopic"}}
+          {{on "click" this.visitTopic}}
           class="topic-category-gallery-content
             {{if this.galleryOnly 'topic-category-gallery_only'}}"
         >
